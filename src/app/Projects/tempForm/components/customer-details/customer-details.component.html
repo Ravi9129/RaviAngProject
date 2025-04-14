@@ -1,0 +1,78 @@
+<div class="container mt-4">
+    <div *ngIf="isLoading" class="text-center">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  
+    <div *ngIf="!isLoading && customer" class="card">
+      <div class="card-header bg-primary text-white">
+        <h3 class="mb-0">Customer Details</h3>
+      </div>
+      <div class="card-body">
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <h5>Basic Information</h5>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><strong>ID:</strong> {{ customer.id }}</li>
+              <li class="list-group-item"><strong>Name:</strong> {{ customer.name }}</li>
+              <li class="list-group-item"><strong>Contact Person:</strong> {{ customer.contactPerson }}</li>
+              <li class="list-group-item"><strong>Email:</strong> {{ customer.email }}</li>
+              <li class="list-group-item"><strong>Phone:</strong> {{ customer.phone }}</li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <h5>Business Details</h5>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <strong>Category:</strong> 
+                <span [ngClass]="{
+                  'badge bg-primary': customer.category === 'Regular',
+                  'badge bg-warning text-dark': customer.category === 'Premium',
+                  'badge bg-success': customer.category === 'VIP'
+                }">
+                  {{ customer.category }}
+                </span>
+              </li>
+              <li class="list-group-item">
+                <strong>Status:</strong> 
+                <span [ngClass]="{
+                  'badge bg-success': customer.status === 'Active',
+                  'badge bg-secondary': customer.status === 'Inactive',
+                  'badge bg-danger': customer.status === 'Suspended'
+                }">
+                  {{ customer.status }}
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+  
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <h5>Address</h5>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><strong>Street:</strong> {{ customer.address.street }}</li>
+              <li class="list-group-item"><strong>City:</strong> {{ customer.address.city }}</li>
+              <li class="list-group-item"><strong>State:</strong> {{ customer.address.state }}</li>
+              <li class="list-group-item"><strong>Country:</strong> {{ customer.address.country }}</li>
+              <li class="list-group-item"><strong>ZIP:</strong> {{ customer.address.zip }}</li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <h5>Notes</h5>
+            <div class="card">
+              <div class="card-body">
+                {{ customer.notes || 'No notes available' }}
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-primary me-2" [routerLink]="['/customers/edit', customer.id]">Edit</button>
+          <button class="btn btn-outline-secondary" routerLink="/customers">Back to List</button>
+        </div>
+      </div>
+    </div>
+  </div>

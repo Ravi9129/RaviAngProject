@@ -1,0 +1,30 @@
+<div class="container mt-4">
+    <div *ngIf="isLoading" class="text-center">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  
+    <div *ngIf="!isLoading && customer" class="card">
+      <div class="card-header bg-danger text-white">
+        <h3 class="mb-0">Delete Customer</h3>
+      </div>
+      <div class="card-body">
+        <h5>Are you sure you want to delete this customer?</h5>
+        <p><strong>Name:</strong> {{ customer.name }}</p>
+        <p><strong>Contact Person:</strong> {{ customer.contactPerson }}</p>
+        
+        <div class="alert alert-warning">
+          This action cannot be undone. All customer data will be permanently deleted.
+        </div>
+  
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-danger me-2" (click)="confirmDelete()" [disabled]="isDeleting">
+            <span *ngIf="isDeleting" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            {{ isDeleting ? 'Deleting...' : 'Confirm Delete' }}
+          </button>
+          <button class="btn btn-outline-secondary" routerLink="/customers">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>

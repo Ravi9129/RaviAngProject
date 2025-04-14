@@ -1,0 +1,118 @@
+{
+  "employees": [
+    {
+      "id": "1",
+      "name": "Ravi Kumar",
+      "email": "ravi@example.com",
+      "phone": "9876543210",
+      "department": "IT",
+      "position": "Senior Developer",
+      "salary": 85000,
+      "joinDate": "2020-05-15",
+      "skills": [
+        "Angular",
+        "TypeScript",
+        "Node.js"
+      ],
+      "address": {
+        "street": "123 Tech Park",
+        "city": "Bangalore",
+        "state": "Karnataka",
+        "zip": "560001"
+      }
+    },
+    {
+      "id": "2",
+      "name": "Ravi adawsdfg Rajput",
+      "email": "ravirajput1230@gmail.com",
+      "phone": "9129868608",
+      "department": "IT",
+      "position": "sdfg",
+      "salary": 34567,
+      "joinDate": "2025-04-14",
+      "skills": [
+        "angular"
+      ],
+      "address": {
+        "street": "dfcgvhb",
+        "city": "sdf",
+        "state": "fgh",
+        "zip": "244235"
+      }
+    },
+    {
+      "id": "3",
+      "name": "Ravi adawsdfg Rajput",
+      "email": "ravirajput1230@gmail.com",
+      "phone": "9129868608",
+      "department": "HR",
+      "position": "sdfg",
+      "salary": 34567,
+      "joinDate": "2025-04-15",
+      "skills": [
+        "angular"
+      ],
+      "address": {
+        "street": "dfcgvhb",
+        "city": "sdf",
+        "state": "fgh",
+        "zip": "244235"
+      }
+    },
+    {
+      "name": "Ravi adawsdfg Rajput",
+      "email": "ravirajput1230@gmail.com",
+      "phone": "9129868608",
+      "department": "IT",
+      "position": "sdfg",
+      "salary": 1,
+      "joinDate": "2025-05-01",
+      "skills": [
+        "angular"
+      ],
+      "address": {
+        "street": "dfcgvhb",
+        "city": "sdf",
+        "state": "fgh",
+        "zip": "244235"
+      },
+      "id": "4"
+    }
+  ],
+  "customers": [
+    {
+      "id": "1",
+      "name": "Amazon Inc",
+      "email": "contact@amazon.com",
+      "phone": "1800-123-456",
+      "category": "Premium",
+      "status": "Active",
+      "contactPerson": "John Doe",
+      "address": {
+        "street": "456 Business Ave",
+        "city": "Seattle",
+        "state": "Washington",
+        "country": "USA",
+        "zip": "98109"
+      },
+      "notes": "Important client with monthly orders"
+    },
+    {
+      "id": "2",
+      "name": "Ravi Rajput",
+      "email": "ravirajput1230@gmail.com",
+      "phone": "09129868608",
+      "category": "Regular",
+      "status": "Active",
+      "contactPerson": "Ravi adawsdfg Rajput",
+      "address": {
+        "street": "dfcgvhb",
+        "city": "sdf",
+        "state": "fgh",
+        "country": "India",
+        "zip": "fcgvh"
+      },
+      "notes": ""
+    }
+  ]
+}

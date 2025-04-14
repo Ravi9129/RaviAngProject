@@ -1,0 +1,163 @@
+<div class="container mt-4">
+    <div *ngIf="isLoading" class="text-center">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <p class="mt-2">Loading customer details...</p>
+    </div>
+  
+    <div *ngIf="!isLoading">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Edit Customer</h2>
+        <button class="btn btn-outline-secondary" routerLink="/customers">Back to List</button>
+      </div>
+  
+      <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
+  
+      <form #customerForm="ngForm" (ngSubmit)="onSubmit(customerForm)" class="needs-validation" novalidate>
+        <div class="row g-3">
+          <!-- Basic Information -->
+          <div class="col-md-6">
+            <div class="card mb-4">
+              <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Basic Information</h5>
+              </div>
+              <div class="card-body">
+                <div class="mb-3">
+                  <label for="name" class="form-label">Company Name</label>
+                  <input type="text" class="form-control" id="name" name="name" 
+                        [(ngModel)]="customer.name" #name="ngModel" required>
+                  <div *ngIf="name.invalid && (name.dirty || name.touched)" class="invalid-feedback">
+                    Company name is required
+                  </div>
+                </div>
+  
+                <div class="mb-3">
+                  <label for="contactPerson" class="form-label">Contact Person</label>
+                  <input type="text" class="form-control" id="contactPerson" name="contactPerson"
+                        [(ngModel)]="customer.contactPerson" #contactPerson="ngModel" required>
+                  <div *ngIf="contactPerson.invalid && (contactPerson.dirty || contactPerson.touched)" class="invalid-feedback">
+                    Contact person is required
+                  </div>
+                </div>
+  
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="email" name="email"
+                        [(ngModel)]="customer.email" #email="ngModel" required email>
+                  <div *ngIf="email.invalid && (email.dirty || email.touched)" class="invalid-feedback">
+                    <div *ngIf="email.errors?.['required']">Email is required</div>
+                    <div *ngIf="email.errors?.['email']">Please enter a valid email</div>
+                  </div>
+                </div>
+  
+                <div class="mb-3">
+                  <label for="phone" class="form-label">Phone</label>
+                  <input type="tel" class="form-control" id="phone" name="phone"
+                        [(ngModel)]="customer.phone" #phone="ngModel" required>
+                  <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="invalid-feedback">
+                    Phone number is required
+                  </div>
+                </div>
+  
+                <div class="row mb-3">
+                  <div class="col-md-6">
+                    <label for="category" class="form-label">Category</label>
+                    <select class="form-select" id="category" name="category"
+                            [(ngModel)]="customer.category" #category="ngModel" required>
+                      <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+                    </select>
+                  </div>
+                  
+                  <div class="col-md-6">
+                    <label for="status" class="form-label">Status</label>
+                    <select class="form-select" id="status" name="status"
+                            [(ngModel)]="customer.status" #status="ngModel" required>
+                      <option *ngFor="let stat of statuses" [value]="stat">{{ stat }}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Address Information -->
+          <div class="col-md-6">
+            <div class="card mb-4">
+              <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Address Information</h5>
+              </div>
+              <div class="card-body">
+                <div class="mb-3">
+                  <label for="street" class="form-label">Street</label>
+                  <input type="text" class="form-control" id="street" name="street"
+                        [(ngModel)]="customer.address.street" #street="ngModel" required>
+                  <div *ngIf="street.invalid && (street.dirty || street.touched)" class="invalid-feedback">
+                    Street is required
+                  </div>
+                </div>
+  
+                <div class="row mb-3">
+                  <div class="col-md-6">
+                    <label for="city" class="form-label">City</label>
+                    <input type="text" class="form-control" id="city" name="city"
+                          [(ngModel)]="customer.address.city" #city="ngModel" required>
+                    <div *ngIf="city.invalid && (city.dirty || city.touched)" class="invalid-feedback">
+                      City is required
+                    </div>
+                  </div>
+                  
+                  <div class="col-md-6">
+                    <label for="state" class="form-label">State</label>
+                    <input type="text" class="form-control" id="state" name="state"
+                          [(ngModel)]="customer.address.state" #state="ngModel" required>
+                    <div *ngIf="state.invalid && (state.dirty || state.touched)" class="invalid-feedback">
+                      State is required
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="row mb-3">
+                  <div class="col-md-6">
+                    <label for="country" class="form-label">Country</label>
+                    <input type="text" class="form-control" id="country" name="country"
+                          [(ngModel)]="customer.address.country" #country="ngModel" required>
+                    <div *ngIf="country.invalid && (country.dirty || country.touched)" class="invalid-feedback">
+                      Country is required
+                    </div>
+                  </div>
+                  
+                  <div class="col-md-6">
+                    <label for="zip" class="form-label">ZIP Code</label>
+                    <input type="text" class="form-control" id="zip" name="zip"
+                          [(ngModel)]="customer.address.zip" #zip="ngModel" required>
+                    <div *ngIf="zip.invalid && (zip.dirty || zip.touched)" class="invalid-feedback">
+                      ZIP code is required
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="mb-3">
+                  <label for="notes" class="form-label">Notes</label>
+                  <textarea class="form-control" id="notes" name="notes" rows="3"
+                            [(ngModel)]="customer.notes"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary me-2" [disabled]="isUpdating">
+              <span *ngIf="isUpdating" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              {{ isUpdating ? 'Updating...' : 'Update Customer' }}
+            </button>
+            <button type="button" class="btn btn-outline-danger" [routerLink]="['/customers/details', customerId]">
+              Cancel
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>

@@ -1,0 +1,53 @@
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2>Employee List</h2>
+      <a routerLink="/employees/create" class="btn btn-primary">Add New Employee</a>
+    </div>
+  
+    <div *ngIf="isLoading" class="text-center">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  
+    <div *ngIf="errorMessage" class="alert alert-danger">
+      {{ errorMessage }}
+    </div>
+  
+    <div *ngIf="!isLoading && !errorMessage">
+      <div *ngIf="employees.length === 0" class="alert alert-info">
+        No employees found.
+      </div>
+  
+      <div *ngIf="employees.length > 0" class="table-responsive">
+        <table class="table table-striped table-hover">
+          <thead class="table-dark">
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Department</th>
+              <th>Position</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let employee of employees">
+              <td>{{ employee.id }}</td>
+              <td>{{ employee.name }}</td>
+              <td>{{ employee.email }}</td>
+              <td>{{ employee.department }}</td>
+              <td>{{ employee.position }}</td>
+              <td>
+                <div class="btn-group" role="group">
+                  <a [routerLink]="['/employees/details', employee.id]" class="btn btn-sm btn-info">View</a>
+                  <a [routerLink]="['/employees/edit', employee.id]" class="btn btn-sm btn-warning">Edit</a>
+                  <button (click)="deleteEmployee(employee.id)" class="btn btn-sm btn-danger">Delete</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

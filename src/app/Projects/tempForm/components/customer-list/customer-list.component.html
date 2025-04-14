@@ -1,0 +1,69 @@
+<div>
+    <div class="container mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h2>Customer List</h2>
+          <a routerLink="/customers/create" class="btn btn-primary">Add New Customer</a>
+        </div>
+      
+        <div *ngIf="isLoading" class="text-center">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      
+        <div *ngIf="!isLoading">
+          <div *ngIf="customers.length === 0" class="alert alert-info">
+            No customers found.
+          </div>
+      
+          <div *ngIf="customers.length > 0" class="table-responsive">
+            <table class="table table-striped table-hover">
+              <thead class="table-dark">
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Contact Person</th>
+                  <th>Email</th>
+                  <th>Category</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let customer of customers">
+                  <td>{{ customer.id }}</td>
+                  <td>{{ customer.name }}</td>
+                  <td>{{ customer.contactPerson }}</td>
+                  <td>{{ customer.email }}</td>
+                  <td>
+                    <span [ngClass]="{
+                      'badge bg-primary': customer.category === 'Regular',
+                      'badge bg-warning text-dark': customer.category === 'Premium',
+                      'badge bg-success': customer.category === 'VIP'
+                    }">
+                      {{ customer.category }}
+                    </span>
+                  </td>
+                  <td>
+                    <span [ngClass]="{
+                      'badge bg-success': customer.status === 'Active',
+                      'badge bg-secondary': customer.status === 'Inactive',
+                      'badge bg-danger': customer.status === 'Suspended'
+                    }">
+                      {{ customer.status }}
+                    </span>
+                  </td>
+                  <td>
+                    <div class="btn-group" role="group">
+                      <a [routerLink]="['/customers/details', customer.id]" class="btn btn-sm btn-info">View</a>
+                      <a [routerLink]="['/customers/edit', customer.id]" class="btn btn-sm btn-warning">Edit</a>
+                      <button (click)="deleteCustomer(customer.id)" class="btn btn-sm btn-danger">Delete</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+</div>

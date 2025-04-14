@@ -1,0 +1,65 @@
+<div class="rw-col-10">
+    <div class="container mt-4">
+        <div *ngIf="isLoading" class="text-center">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      
+        <div *ngIf="!isLoading && employee" class="card">
+          <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">Employee Details</h3>
+          </div>
+          <div class="card-body">
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <h5>Basic Information</h5>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><strong>ID:</strong> {{ employee.id }}</li>
+                  <li class="list-group-item"><strong>Name:</strong> {{ employee.name }}</li>
+                  <li class="list-group-item"><strong>Email:</strong> {{ employee.email }}</li>
+                  <li class="list-group-item"><strong>Phone:</strong> {{ employee.phone }}</li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <h5>Employment Details</h5>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><strong>Department:</strong> {{ employee.department }}</li>
+                  <li class="list-group-item"><strong>Position:</strong> {{ employee.position }}</li>
+                  <li class="list-group-item"><strong>Salary:</strong> ₹{{ employee.salary | number }}</li>
+                  <li class="list-group-item"><strong>Join Date:</strong> {{ employee.joinDate | date:'mediumDate' }}</li>
+                </ul>
+              </div>
+            </div>
+      
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <h5>Skills</h5>
+                <div *ngIf="employee.skills.length > 0; else noSkills">
+                  <ul class="list-group">
+                    <li class="list-group-item" *ngFor="let skill of employee.skills">{{ skill }}</li>
+                  </ul>
+                </div>
+                <ng-template #noSkills>
+                  <p class="text-muted">No skills listed</p>
+                </ng-template>
+              </div>
+              <div class="col-md-6">
+                <h5>Address</h5>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><strong>Street:</strong> {{ employee.address.street }}</li>
+                  <li class="list-group-item"><strong>City:</strong> {{ employee.address.city }}</li>
+                  <li class="list-group-item"><strong>State:</strong> {{ employee.address.state }}</li>
+                  <li class="list-group-item"><strong>ZIP:</strong> {{ employee.address.zip }}</li>
+                </ul>
+              </div>
+            </div>
+      
+            <div class="d-flex justify-content-end">
+              <button class="btn btn-primary me-2" [routerLink]="['/employees/edit', employee.id]">Edit</button>
+              <button class="btn btn-outline-secondary" routerLink="/employees">Back to List</button>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>

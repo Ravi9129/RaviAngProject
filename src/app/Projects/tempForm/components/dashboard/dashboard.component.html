@@ -1,0 +1,35 @@
+<div class="container mt-4">
+    <h2>Dashboard</h2>
+    
+    <div class="row mt-4">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Employees</h5>
+          </div>
+          <div class="card-body">
+            <p>Manage your employee records</p>
+            <a [routerLink]="['/employees']" class="btn btn-outline-primary">Go to Employees</a>
+            <div class="mt-2">
+              <a [routerLink]="['/employees/create']" class="btn btn-sm btn-success">Add New Employee</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header bg-success text-white">
+            <h5 class="mb-0">Customers</h5>
+          </div>
+          <div class="card-body">
+            <p>Manage your customer records</p>
+            <a [routerLink]="['/customers']" class="btn btn-outline-success">Go to Customers</a>
+            <div class="mt-2">
+              <a [routerLink]="['/customers/create']" class="btn btn-sm btn-success">Add New Customer</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

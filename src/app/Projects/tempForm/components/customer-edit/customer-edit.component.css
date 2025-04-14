@@ -1,0 +1,20 @@
+/* Add any custom styles here */
+.invalid-feedback {
+    display: block;
+  }
+  
+  .card {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    
+    .card-header {
+      font-weight: 500;
+    }
+  }
+  
+  .btn {
+    min-width: 100px;
+  }
+  
+  textarea {
+    min-height: 100px;
+  }
