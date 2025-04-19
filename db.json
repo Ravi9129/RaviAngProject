@@ -114,5 +114,51 @@
       },
       "notes": ""
     }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "email": "admin@example.com",
+      "password": "admin123",
+      "firstName": "Admin",
+      "lastName": "User",
+      "roles": [
+        "admin"
+      ],
+      "refreshToken": "admin-refresh-token"
+    },
+    {
+      "id": "2",
+      "email": "user@example.com",
+      "password": "user123",
+      "firstName": "Regular",
+      "lastName": "User",
+      "roles": [
+        "user"
+      ],
+      "refreshToken": "user-refresh-token"
+    },
+    {
+      "id": "a92d",
+      "firstName": "Ravi",
+      "lastName": "Rajput",
+      "email": "ravirajput1230@gmail.com",
+      "password": "Ravi@123456",
+      "roles": [
+        "user"
+      ],
+      "refreshToken": "refresh-token-1745086245197"
+    },
+    {
+      "id": "f563",
+      "firstName": "Ravi",
+      "lastName": "Rajput",
+      "email": "ravirajput1230@gmail.com",
+      "password": "Qwerty@123456",
+      "roles": [
+        "user"
+      ],
+      "refreshToken": "refresh-token-1745087469915"
+    }
   ]
 }

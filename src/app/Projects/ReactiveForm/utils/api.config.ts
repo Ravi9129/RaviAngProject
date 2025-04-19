@@ -5,3 +5,6 @@ export const API_CONFIG = {
        CUSTOMERS: '/customers'
     }
   };
+
+  //ng g guard
+  //ng generate interceptor

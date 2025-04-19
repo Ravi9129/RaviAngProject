@@ -23,6 +23,8 @@
     "@angular/ssr": "^19.0.2",
     "express": "^4.18.2",
     "json-server": "^1.0.0-beta.3",
+    "jwt-decode": "^4.0.0",
+    "ngx-toastr": "^19.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"

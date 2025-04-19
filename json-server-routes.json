@@ -1,0 +1,8 @@
+{
+    "/auth/register": "/register",
+    "/auth/login": "/login",
+    "/auth/refresh": "/refresh",
+    "/auth/me": "/me",
+    "/api/employees": "/employees",
+    "/api/customers": "/customers"
+  }

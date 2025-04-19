@@ -9,19 +9,90 @@ import { DashboardComponent } from './Projects/tempForm/components/dashboard/das
 import { CustomerEditComponent } from './Projects/tempForm/components/customer-edit/customer-edit.component';
 import { CustomerDetailsComponent } from './Projects/tempForm/components/customer-details/customer-details.component';
 import { CustomerDeleteComponent } from './Projects/tempForm/components/customer-delete/customer-delete.component';
+import { ProfileComponent } from './Auth/features/user/profile/profile.component';
+import { AuthGuard } from './Auth/core/guards/auth.guard';
+import { UserListComponent } from './Auth/features/user/user-list/user-list.component';
+import { LoginComponent } from './Auth/features/auth/login/login.component';
+import { RegisterComponent } from './Auth/features/auth/register/register.component';
+import { roleGuard } from './Auth/core/guards/role.guard';
+
 
 export const routes: Routes = [
-    { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-    { path: 'dashboard', component: DashboardComponent },
-  { path: 'employees', component: EmployeeListComponent },
-  { path: 'employees/create', component: EmployeeCreateComponent },
-  { path: 'employees/edit/:id', component: EmployeeEditComponent },
-  { path: 'employees/details/:id', component: EmployeeDetailsComponent },
- 
-  { path: 'customers', component: CustomerListComponent },
-  { path: 'customers/create', component: CustomerCreateComponent },
-  { path: 'customers/edit/:id', component: CustomerEditComponent },
-  { path: 'customers/details/:id', component: CustomerDetailsComponent },
-  { path: 'customers/delete/:id', component: CustomerDeleteComponent },
+  // Public routes
+  { path: 'auth/login', component: LoginComponent },
+  { path: 'auth/register', component: RegisterComponent },
+  
+  // Protected routes
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  
+  // Employee routes
+  { 
+    path: 'employees', 
+    component: EmployeeListComponent,
+    canActivate: [AuthGuard] 
+  },
+  { 
+    path: 'employees/create', 
+    component: EmployeeCreateComponent,
+    canActivate: [AuthGuard, roleGuard],
+    data: { roles: ['admin'] }
+  },
+  { 
+    path: 'employees/edit/:id', 
+    component: EmployeeEditComponent,
+    canActivate: [AuthGuard, roleGuard],
+    data: { roles: ['admin'] }
+  },
+  { 
+    path: 'employees/details/:id', 
+    component: EmployeeDetailsComponent,
+    canActivate: [AuthGuard] 
+  },
+  
+  // Customer routes
+  { 
+    path: 'customers', 
+    component: CustomerListComponent,
+    canActivate: [AuthGuard] 
+  },
+  { 
+    path: 'customers/create', 
+    component: CustomerCreateComponent,
+    canActivate: [AuthGuard, roleGuard],
+    data: { roles: ['admin'] }
+  },
+  { 
+    path: 'customers/edit/:id', 
+    component: CustomerEditComponent,
+    canActivate: [AuthGuard, roleGuard],
+    data: { roles: ['admin'] }
+  },
+  { 
+    path: 'customers/details/:id', 
+    component: CustomerDetailsComponent,
+    canActivate: [AuthGuard] 
+  },
+  { 
+    path: 'customers/delete/:id', 
+    component: CustomerDeleteComponent,
+    canActivate: [AuthGuard, roleGuard],
+    data: { roles: ['admin'] }
+  },
+  
+  // User management routes
+  { 
+    path: 'user/profile', 
+    component: ProfileComponent,
+    canActivate: [AuthGuard] 
+  },
+  { 
+    path: 'user/list', 
+    component: UserListComponent,
+    canActivate: [AuthGuard, roleGuard],
+    data: { roles: ['admin'] }
+  },
+  
+  // Wildcard route
   { path: '**', redirectTo: '/dashboard' }
 ];

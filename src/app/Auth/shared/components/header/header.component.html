@@ -1,0 +1,34 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" routerLink="/">User Management</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/" routerLinkActive="active">Home</a>
+          </li>
+          <li class="nav-item" *ngIf="tokenService.isLoggedIn()">
+            <a class="nav-link" routerLink="/user/profile" routerLinkActive="active">Profile</a>
+          </li>
+          <li class="nav-item" *appRole="['admin']">
+            <a class="nav-link" routerLink="/user/list" routerLinkActive="active">User List</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav" *ngIf="!tokenService.isLoggedIn()">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/auth/login" routerLinkActive="active">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/auth/register" routerLinkActive="active">Register</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav" *ngIf="tokenService.isLoggedIn()">
+          <li class="nav-item">
+            <a class="nav-link" (click)="logout()" style="cursor: pointer;">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>

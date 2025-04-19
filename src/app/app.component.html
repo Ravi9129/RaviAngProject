@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
   <div class="container">
     <a class="navbar-brand" [routerLink]="['/dashboard']">CRM System</a>
     <div class="collapse navbar-collapse">
@@ -11,6 +11,49 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/customers']" routerLinkActive="active">Customers</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div> -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+  <div class="container">
+    <a class="navbar-brand" [routerLink]="['/dashboard']">CRM System</a>
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/dashboard']" routerLinkActive="active">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/employees']" routerLinkActive="active">Employees</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/customers']" routerLinkActive="active">Customers</a>
+        </li>
+      </ul>
+
+      <!-- Add your existing auth links from header component -->
+      <ul class="navbar-nav" *ngIf="!tokenService.isLoggedIn()">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/auth/login" routerLinkActive="active">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/auth/register" routerLinkActive="active">Register</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav" *ngIf="tokenService.isLoggedIn()">
+        <li class="nav-item">
+          <a class="nav-link" (click)="logout()" style="cursor: pointer;">Logout</a>
         </li>
       </ul>
     </div>
