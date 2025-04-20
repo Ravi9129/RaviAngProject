@@ -6,5 +6,4 @@ export const API_CONFIG = {
     }
   };
 
-  //ng g guard
-  //ng generate interceptor
+ 

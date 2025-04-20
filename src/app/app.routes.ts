@@ -15,6 +15,7 @@ import { UserListComponent } from './Auth/features/user/user-list/user-list.comp
 import { LoginComponent } from './Auth/features/auth/login/login.component';
 import { RegisterComponent } from './Auth/features/auth/register/register.component';
 import { roleGuard } from './Auth/core/guards/role.guard';
+import { AdminDashboardComponent } from './Auth/features/admin/admin-dashboard/admin-dashboard.component';
 
 
 export const routes: Routes = [
@@ -30,13 +31,22 @@ export const routes: Routes = [
   { 
     path: 'employees', 
     component: EmployeeListComponent,
-    canActivate: [AuthGuard] 
+    canActivate: [AuthGuard],
+    data: { roles: ['admin', 'manager', 'user'] } 
+  },
+
+  { 
+    path: 'admin', 
+    component: AdminDashboardComponent,
+    canActivate: [AuthGuard, roleGuard],
+    data: { roles: ['admin'] }
   },
   { 
     path: 'employees/create', 
     component: EmployeeCreateComponent,
     canActivate: [AuthGuard, roleGuard],
     data: { roles: ['admin'] }
+   // data: { roles: ['admin', 'manager', 'user'] } 
   },
   { 
     path: 'employees/edit/:id', 
@@ -89,6 +99,12 @@ export const routes: Routes = [
   { 
     path: 'user/list', 
     component: UserListComponent,
+    canActivate: [AuthGuard, roleGuard],
+    data: { roles: ['admin'] }
+  },
+  { 
+    path: 'admin', 
+    component: AdminDashboardComponent,
     canActivate: [AuthGuard, roleGuard],
     data: { roles: ['admin'] }
   },

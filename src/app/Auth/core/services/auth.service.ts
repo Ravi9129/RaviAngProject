@@ -17,14 +17,45 @@ export class AuthService {
     private tokenService: TokenService
   ) {}
 
+  // login(email: string, password: string): Observable<LoginResponse> {
+  //   return this.http.get<User[]>(`${this.API_URL}/users?email=${email}&password=${password}`).pipe(
+  //     map((users) => {
+  //       if (users.length === 0) {
+  //         throw new Error('Invalid credentials');
+  //       }
+  //       const user = users[0];
+  //       return {
+  //         accessToken: `fake-jwt-token-${user.id}`,
+  //         refreshToken: user.refreshToken || `refresh-token-${user.id}`,
+  //         user: {
+  //           id: user.id,
+  //           email: user.email,
+  //           firstName: user.firstName,
+  //           lastName: user.lastName,
+  //           roles: user.roles
+  //         }
+  //       };
+  //     }),
+  //     tap((response) => {
+  //       this.tokenService.setAccessToken(response.accessToken);
+  //       this.tokenService.setRefreshToken(response.refreshToken);
+  //       this.tokenService.setUser(response.user);
+  //     }),
+  //     catchError((error) => {
+  //       console.error('Login error:', error);
+  //       return throwError(() => error);
+  //     })
+  //   );
+  // }
   login(email: string, password: string): Observable<LoginResponse> {
     return this.http.get<User[]>(`${this.API_URL}/users?email=${email}&password=${password}`).pipe(
       map((users) => {
         if (users.length === 0) {
           throw new Error('Invalid credentials');
         }
+        
         const user = users[0];
-        return {
+        const response = {
           accessToken: `fake-jwt-token-${user.id}`,
           refreshToken: user.refreshToken || `refresh-token-${user.id}`,
           user: {
@@ -32,18 +63,15 @@ export class AuthService {
             email: user.email,
             firstName: user.firstName,
             lastName: user.lastName,
-            roles: user.roles
+            roles: user.roles || ['user'] // Ensure roles exist with default
           }
         };
+        
+        return response;
       }),
-      tap((response) => {
+      tap(response => {
         this.tokenService.setAccessToken(response.accessToken);
-        this.tokenService.setRefreshToken(response.refreshToken);
-        this.tokenService.setUser(response.user);
-      }),
-      catchError((error) => {
-        console.error('Login error:', error);
-        return throwError(() => error);
+        this.tokenService.setUser(response.user); // Store full user object
       })
     );
   }

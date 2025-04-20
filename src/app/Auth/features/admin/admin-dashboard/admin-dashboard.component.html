@@ -1,0 +1,76 @@
+<div class="container mt-4">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">Admin Dashboard</h3>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <!-- Stats Cards -->
+              <div class="col-md-4 mb-4">
+                <div class="card text-white bg-info h-100">
+                  <div class="card-body">
+                    <h5 class="card-title">Users</h5>
+                    <h2 class="display-4">{{ userCount }}</h2>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col-md-4 mb-4">
+                <div class="card text-white bg-success h-100">
+                  <div class="card-body">
+                    <h5 class="card-title">Employees</h5>
+                    <h2 class="display-4">{{ employeeCount }}</h2>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col-md-4 mb-4">
+                <div class="card text-white bg-warning h-100">
+                  <div class="card-body">
+                    <h5 class="card-title">Customers</h5>
+                    <h2 class="display-4">{{ customerCount }}</h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Chart -->
+            <div class="row mt-4">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-body">
+                    <!-- <canvas
+                    baseChart
+                    [type]="barChartType"
+                    [data]="barChartData"
+                    [options]="barChartOptions">
+                  </canvas> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Quick Actions -->
+            <div class="row mt-4">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-header bg-secondary text-white">
+                    <h5 class="mb-0">Quick Actions</h5>
+                  </div>
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                      <a routerLink="/user/list" class="btn btn-primary">Manage Users</a>
+                      <a routerLink="/employees/create" class="btn btn-success">Add Employee</a>
+                      <a routerLink="/customers/create" class="btn btn-info">Add Customer</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

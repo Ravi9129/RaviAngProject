@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from '../../models/user.model';
 import { StorageService } from './storage.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,8 @@ export class TokenService {
   private readonly ACCESS_TOKEN_KEY = 'access_token';
   private readonly REFRESH_TOKEN_KEY = 'refresh_token';
   private readonly USER_KEY = 'current_user';
+  private authState = new BehaviorSubject<boolean>(false);
+  authState$ = this.authState.asObservable();
 
   constructor(private storage: StorageService) {}
 
@@ -18,6 +21,11 @@ export class TokenService {
 
   setAccessToken(token: string): void {
     this.storage.setItem(this.ACCESS_TOKEN_KEY, token);
+    this.authState.next(true);
+  }
+  removeAccessToken(): void {
+    localStorage.removeItem('access_token');
+    this.authState.next(false);
   }
 
   getRefreshToken(): string | null {
@@ -46,4 +54,5 @@ export class TokenService {
   isLoggedIn(): boolean {
     return !!this.getAccessToken();
   }
+  
 }

@@ -14,55 +14,23 @@ export class EmployeeService {
     return this.http.get<Employee[]>(`${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.EMPLOYEES}`);
   }
 
-  getEmployeeById(id: number): Observable<Employee> {
+  getEmployeeById(id: number | string): Observable<Employee> {
     return this.http.get<Employee>(`${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.EMPLOYEES}/${id}`);
   }
 
-  // createEmployee(employee: Employee): Observable<Employee> {
-  //   return this.http.post<Employee>(`${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.EMPLOYEES}`, employee);
-  // }
-
-  // createEmployee(employee: Employee): Observable<Employee> {
-  //   return this.getAllEmployees().pipe(
-  //     map(employees => {
-  //       const newId = employees.length > 0 
-  //         ? Math.max(...employees.map(e => e.id)) + 1 
-  //         : 1;
-  //       return { ...employee, id: newId };
-  //     }),
-  //     switchMap(newEmployee => 
-  //       this.http.post<Employee>(
-  //         `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.EMPLOYEES}`,
-  //         newEmployee
-  //       )
-  //     )
-  //   );
-  // }
-  // createEmployee(employee: Employee): Observable<Employee> {
-  //   return this.getAllEmployees().pipe(
-  //     map(employees => {
-  //       // Calculate next ID as string
-  //       const newId = employees.length > 0 
-  //         ? (Math.max(...employees.map(e => +e.id)) + 1).toString() 
-  //         : '1'; // Start with '1' as string
-  //       return { ...employee, id: newId };
-  //     }),
-  //     switchMap(newEmployee => 
-  //       this.http.post<Employee>(
-  //         `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.EMPLOYEES}`,
-  //         newEmployee
-  //       )
-  //     )
-  //   );
-  // }
-
-  createEmployee(employee: Employee): Observable<Employee> {
+  createEmployee(employee: Omit<Employee, 'id'>): Observable<Employee> {
     return this.getAllEmployees().pipe(
       map(employees => {
-        const newId = employees.length > 0 
-          ? Math.max(...employees.map(e => e.id)) + 1 
-          : 1;
-        return { ...employee, id: newId };
+        // Find max ID whether it's string or number
+        const maxId = employees.reduce((max, emp) => {
+          const currentId = typeof emp.id === 'string' ? parseInt(emp.id) : emp.id;
+          return currentId > max ? currentId : max;
+        }, 0);
+        
+        return { 
+          ...employee, 
+          id: (maxId + 1).toString() // Always create string IDs
+        };
       }),
       switchMap(newEmployee => 
         this.http.post<Employee>(
@@ -73,11 +41,16 @@ export class EmployeeService {
     );
   }
 
-  updateEmployee(id: number, employee: Employee): Observable<Employee> {
-    return this.http.put<Employee>(`${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.EMPLOYEES}/${id}`, employee);
+  updateEmployee(id: number | string, employee: Employee): Observable<Employee> {
+    return this.http.put<Employee>(
+      `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.EMPLOYEES}/${id}`,
+      employee
+    );
   }
 
-  deleteEmployee(id: number): Observable<void> {
-    return this.http.delete<void>(`${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.EMPLOYEES}/${id}`);
+  deleteEmployee(id: number | string): Observable<void> {
+    return this.http.delete<void>(
+      `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.EMPLOYEES}/${id}`
+    );
   }
 }

@@ -41,32 +41,13 @@
       }
     },
     {
-      "id": "3",
-      "name": "Ravi adawsdfg Rajput",
+      "name": "ankuu",
       "email": "ravirajput1230@gmail.com",
       "phone": "9129868608",
-      "department": "HR",
+      "department": "Finance",
       "position": "sdfg",
       "salary": 34567,
-      "joinDate": "2025-04-15",
-      "skills": [
-        "angular"
-      ],
-      "address": {
-        "street": "dfcgvhb",
-        "city": "sdf",
-        "state": "fgh",
-        "zip": "244235"
-      }
-    },
-    {
-      "name": "Ravi adawsdfg Rajput",
-      "email": "ravirajput1230@gmail.com",
-      "phone": "9129868608",
-      "department": "IT",
-      "position": "sdfg",
-      "salary": 1,
-      "joinDate": "2025-05-01",
+      "joinDate": "2025-04-20",
       "skills": [
         "angular"
       ],
@@ -76,7 +57,64 @@
         "state": "fgh",
         "zip": "244235"
       },
-      "id": "4"
+      "id": 4
+    },
+    {
+      "id": 5,
+      "name": "asdfg",
+      "email": "ravirajput1230@gmail.com",
+      "phone": "9129868608",
+      "department": "IT",
+      "position": "sdfg",
+      "salary": 12345,
+      "joinDate": "2025-04-20",
+      "skills": [
+        "angular"
+      ],
+      "address": {
+        "street": "dfcgvhb",
+        "city": "sdf",
+        "state": "fgh",
+        "zip": "123456"
+      }
+    },
+    {
+      "name": "sapna",
+      "email": "ravirajput1230@gmail.com",
+      "phone": "9129868608",
+      "department": "IT",
+      "position": "sdfg",
+      "salary": 123456,
+      "joinDate": "2025-04-20",
+      "skills": [
+        "sdf"
+      ],
+      "address": {
+        "street": "dfcgvhb",
+        "city": "sdf",
+        "state": "fgh",
+        "zip": "123456"
+      },
+      "id": "6"
+    },
+    {
+      "name": "Ravi Rajput",
+      "email": "ravirajput1230@gmail.com",
+      "phone": "9129868608",
+      "department": "IT",
+      "position": "sdfg",
+      "salary": 8765432,
+      "joinDate": "2025-04-20",
+      "skills": [
+        "zxcvb"
+      ],
+      "address": {
+        "street": "dfcgvhb",
+        "city": "sdf",
+        "state": "fgh",
+        "zip": "123456"
+      },
+      "id": "7"
     }
   ],
   "customers": [
@@ -159,6 +197,17 @@
         "user"
       ],
       "refreshToken": "refresh-token-1745087469915"
+    },
+    {
+      "id": "9bcd",
+      "firstName": "anku",
+      "lastName": "Rajput",
+      "email": "ravirajput1230@gmail.com",
+      "password": "Anku@123456",
+      "roles": [
+        "user"
+      ],
+      "refreshToken": "refresh-token-1745127715797"
     }
   ]
 }
